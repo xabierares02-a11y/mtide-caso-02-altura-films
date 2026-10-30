@@ -1,0 +1,50 @@
+version: 2
+models:
+  - name: dim_piloto
+    description: "Una fila por piloto"
+    columns:
+      - name: piloto
+        data_tests: [unique, not_null]
+
+  - name: dim_dron
+    description: "Una fila por dron"
+    columns:
+      - name: dron
+        data_tests: [unique, not_null]
+
+  - name: dim_encargo
+    description: "Una fila por tipo de encargo"
+    columns:
+      - name: encargo
+        data_tests: [unique, not_null]
+
+  - name: fact_vuelos
+    description: "Un vuelo por fila, con sus medidas y las claves de sus tres dimensiones"
+    columns:
+      - name: vuelo
+        data_tests: [unique, not_null]
+      - name: piloto
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_piloto')
+                field: piloto
+      - name: dron
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_dron')
+                field: dron
+      - name: encargo
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_encargo')
+                field: encargo
+
+  - name: pregunta_1
+    description: "¿Qué tipo de encargo deja menos ingreso por minuto de vuelo? (€/min, de menor a mayor)"
+  - name: pregunta_2
+    description: "¿Qué piloto gasta más batería por minuto de vuelo? (Wh/min, de mayor a menor)"
+  - name: pregunta_3
+    description: "¿Qué dron acumula más incidencias por cada 100 minutos de vuelo? (de mayor a menor)"
