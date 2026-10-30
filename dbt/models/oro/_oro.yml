@@ -48,3 +48,8 @@ models:
     description: "¿Qué piloto gasta más batería por minuto de vuelo? (Wh/min, de mayor a menor)"
   - name: pregunta_3
     description: "¿Qué dron acumula más incidencias por cada 100 minutos de vuelo? (de mayor a menor)"
+  - name: pregunta_4
+    description: "¿Qué dron tiene más vuelos sin aterrizaje registrado, en proporción? (de mayor a menor)"
+    columns:
+      - name: dron
+        data_tests: [unique, not_null]
