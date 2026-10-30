@@ -13,3 +13,32 @@ models:
           - accepted_values:
               arguments:
                 values: ["boda", "inmobiliaria", "evento deportivo", "agricultura", "turismo", "publicidad", "inspección industrial", "festival"]
+
+  - name: stg_meteo_diaria
+    description: "Viento medio y rachas máximas de cada día (km/h)"
+    columns:
+      - name: fecha
+        data_tests: [unique, not_null]
+      - name: rachas_kmh
+        data_tests: [not_null]
+
+  - name: stg_eventos
+    description: "Registro de despegues y aterrizajes: una fila por evento"
+    columns:
+      - name: evento_id
+        data_tests: [unique, not_null]
+      - name: vuelo_id
+        data_tests: [not_null]
+      - name: ts
+        data_tests: [not_null]
+      - name: tipo
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ["despegue", "aterrizaje"]
+      - name: dron
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_dron')
+                field: dron
