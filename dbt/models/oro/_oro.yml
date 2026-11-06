@@ -53,3 +53,39 @@ models:
     columns:
       - name: dron
         data_tests: [unique, not_null]
+
+  - name: historia_terreno
+    description: "La historia · una fila con las cifras de contexto de la flota y del DRN-24"
+    columns:
+      - name: ambito
+        data_tests: [unique, not_null]
+  - name: historia_semana
+    description: "La historia · incidencias por 100 min, semana a semana, DRN-24 frente al resto"
+    columns:
+      - name: semana
+        data_tests: [unique, not_null]
+  - name: historia_dron_semana
+    description: "La historia · incidencias por 100 min por dron y semana (mapa de calor)"
+    columns:
+      - name: celda
+        data_tests: [unique, not_null]
+  - name: historia_contraste
+    description: "La historia · incidencias por 100 min con el parte sin limpiar (bronce) y limpio (plata)"
+    columns:
+      - name: dron
+        data_tests: [unique, not_null]
+  - name: historia_viento
+    description: "La historia · rachas del día de cada vuelo, DRN-24 frente al resto de la flota"
+    columns:
+      - name: grupo
+        data_tests: [unique, not_null]
+  - name: historia_piloto
+    description: "La historia · incidencias por 100 min por piloto, DRN-24 frente al resto de la flota"
+    columns:
+      - name: piloto
+        data_tests: [unique, not_null]
+  - name: historia_encargo
+    description: "La historia · incidencias por 100 min por encargo, DRN-24 frente al resto de la flota"
+    columns:
+      - name: encargo
+        data_tests: [unique, not_null]
